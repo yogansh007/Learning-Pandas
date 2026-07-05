@@ -22,18 +22,16 @@ print(series_from_dict)
 
 print(pd_data.loc[['a','b']])
 
-cs=pd.read_csv('data.csv')
-print(cs)
+
 
 pd.options.display.max_rows=999
-print(cs)
+
 print(pd.options.display.max_rows)
 
 
 # importing json
 
-json_data=pd.read_json('data.json')
-print(json_data)
+
 
 python_dict= {
   "Duration":{
@@ -72,5 +70,80 @@ python_dict= {
 
 # json format and python dict are same so read can 
 # be done from both json file and python dict
-another_json=pd.DataFrame(python_dict)
-print(another_json)
+
+
+#tail ==> prints last 5 rows by defualt if no is not given
+
+
+
+
+csv=pd.read_csv('data.csv')
+print(csv)
+
+
+
+#new_csv=csv.dropna()
+#print(new_csv)
+
+
+#by default the dropna method will return new dataframe 
+# to get original dataframe changed use inplace= true
+
+#csv.dropna(inplace=True)
+#print(csv)
+
+
+# fill required data in empty cells instead of deleting full rows
+
+#csv.fillna({
+   # "Calories":69,
+    #"Pulse":69,
+    #"Maxpulse":69,
+    #"Duration":69,
+#},inplace=True)
+#print(csv)
+
+# calculating mean and putting value on required column
+#x=csv["Calories"].mean()
+#csv.fillna({"Calories":x},inplace=True)
+#print(csv)
+#print(x)
+
+
+csv["Date"]=pd.to_datetime(csv['Date'],format='mixed')
+#print(csv)
+
+
+#csv.dropna(subset=['Date'],inplace=True)
+#print(csv)
+
+#csv.loc[7,'Duration']=45
+#print(csv)
+
+# loop through csv and repalce wrong data out of range
+
+#for x in csv.index:
+   # if csv.loc[x,"Duration"]>120:
+      #  csv.loc[x,"Duration"]=120
+
+#for x in csv.index:
+ #   if csv.loc[x,"Duration"]>120:
+  #      csv.drop(x,inplace=True)
+
+#print(csv)
+
+
+# look dor dublicate rows
+
+#print(csv.duplicated())
+#csv.drop_duplicates(inplace=True)
+#print(csv)
+
+
+#finding correlation between rows
+
+
+
+
+
+print(csv.corr())
